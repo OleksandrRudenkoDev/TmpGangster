@@ -1,8 +1,8 @@
-using StateMachine.States;
-using StateMachine.States.Base;
+using Base.StateMachine.States;
+using Base.StateMachine.States.Base;
 using Zenject;
 
-namespace StateMachine.Installer
+namespace Base.StateMachine.Installer
 {
     public class GameStateMachineInstaller : MonoInstaller
     {

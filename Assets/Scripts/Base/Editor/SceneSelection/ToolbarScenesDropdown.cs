@@ -4,7 +4,7 @@ using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Editor.SceneSelection
+namespace Base.Editor.SceneSelection
 {
     [InitializeOnLoad]
     public static class ToolbarScenesDropdown

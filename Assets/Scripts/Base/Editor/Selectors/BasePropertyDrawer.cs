@@ -6,7 +6,7 @@ using System.Reflection;
 using UnityEditor;
 using UnityEngine;
 
-namespace Editor.Selectors
+namespace Base.Editor.Selectors
 {
     public class BasePropertyDrawer<T> : PropertyDrawer
         where T : class

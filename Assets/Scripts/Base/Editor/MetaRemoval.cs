@@ -1,7 +1,7 @@
 using System.IO;
 using UnityEditor;
 
-namespace Editor
+namespace Base.Editor
 {
     public static class MetaRemoval
     {

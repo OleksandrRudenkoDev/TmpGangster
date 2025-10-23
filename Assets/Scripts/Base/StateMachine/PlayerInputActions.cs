@@ -182,6 +182,90 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Shooting"",
+            ""id"": ""1d66fce4-db2d-4ae1-a50f-42e25dce4062"",
+            ""actions"": [
+                {
+                    ""name"": ""Attack"",
+                    ""type"": ""Button"",
+                    ""id"": ""38ddc3f2-8fb5-4fd0-a85b-f6222c33d1cf"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""4a9290f0-dbac-4561-9b4c-45913fb219bc"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""ColdMelee"",
+            ""id"": ""236ea3d0-be33-42fa-904c-16bc84e69fdf"",
+            ""actions"": [
+                {
+                    ""name"": ""Attack"",
+                    ""type"": ""Button"",
+                    ""id"": ""4c6f2d0f-6109-4737-a123-9931727c5db0"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""e7db31c3-39d9-4a17-8f4f-9391ee04fb24"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""FistMelee"",
+            ""id"": ""fcd615b0-e993-43c3-b9fb-fdbe9e548692"",
+            ""actions"": [
+                {
+                    ""name"": ""Attack"",
+                    ""type"": ""Button"",
+                    ""id"": ""026457ac-2e4e-437c-bf2f-f4680313a8f3"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""3dafcef6-0dcf-4f10-852d-52595ded3820"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -194,12 +278,24 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         // Camera
         m_Camera = asset.FindActionMap("Camera", throwIfNotFound: true);
         m_Camera_Move = m_Camera.FindAction("Move", throwIfNotFound: true);
+        // Shooting
+        m_Shooting = asset.FindActionMap("Shooting", throwIfNotFound: true);
+        m_Shooting_Attack = m_Shooting.FindAction("Attack", throwIfNotFound: true);
+        // ColdMelee
+        m_ColdMelee = asset.FindActionMap("ColdMelee", throwIfNotFound: true);
+        m_ColdMelee_Attack = m_ColdMelee.FindAction("Attack", throwIfNotFound: true);
+        // FistMelee
+        m_FistMelee = asset.FindActionMap("FistMelee", throwIfNotFound: true);
+        m_FistMelee_Attack = m_FistMelee.FindAction("Attack", throwIfNotFound: true);
     }
 
     ~@PlayerInputActions()
     {
         UnityEngine.Debug.Assert(!m_Move.enabled, "This will cause a leak and performance issues, PlayerInputActions.Move.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_Camera.enabled, "This will cause a leak and performance issues, PlayerInputActions.Camera.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_Shooting.enabled, "This will cause a leak and performance issues, PlayerInputActions.Shooting.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_ColdMelee.enabled, "This will cause a leak and performance issues, PlayerInputActions.ColdMelee.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_FistMelee.enabled, "This will cause a leak and performance issues, PlayerInputActions.FistMelee.Disable() has not been called.");
     }
 
     /// <summary>
@@ -485,6 +581,294 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     /// Provides a new <see cref="CameraActions" /> instance referencing this action map.
     /// </summary>
     public CameraActions @Camera => new CameraActions(this);
+
+    // Shooting
+    private readonly InputActionMap m_Shooting;
+    private List<IShootingActions> m_ShootingActionsCallbackInterfaces = new List<IShootingActions>();
+    private readonly InputAction m_Shooting_Attack;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "Shooting".
+    /// </summary>
+    public struct ShootingActions
+    {
+        private @PlayerInputActions m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public ShootingActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "Shooting/Attack".
+        /// </summary>
+        public InputAction @Attack => m_Wrapper.m_Shooting_Attack;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_Shooting; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="ShootingActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(ShootingActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="ShootingActions" />
+        public void AddCallbacks(IShootingActions instance)
+        {
+            if (instance == null || m_Wrapper.m_ShootingActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_ShootingActionsCallbackInterfaces.Add(instance);
+            @Attack.started += instance.OnAttack;
+            @Attack.performed += instance.OnAttack;
+            @Attack.canceled += instance.OnAttack;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="ShootingActions" />
+        private void UnregisterCallbacks(IShootingActions instance)
+        {
+            @Attack.started -= instance.OnAttack;
+            @Attack.performed -= instance.OnAttack;
+            @Attack.canceled -= instance.OnAttack;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="ShootingActions.UnregisterCallbacks(IShootingActions)" />.
+        /// </summary>
+        /// <seealso cref="ShootingActions.UnregisterCallbacks(IShootingActions)" />
+        public void RemoveCallbacks(IShootingActions instance)
+        {
+            if (m_Wrapper.m_ShootingActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="ShootingActions.AddCallbacks(IShootingActions)" />
+        /// <seealso cref="ShootingActions.RemoveCallbacks(IShootingActions)" />
+        /// <seealso cref="ShootingActions.UnregisterCallbacks(IShootingActions)" />
+        public void SetCallbacks(IShootingActions instance)
+        {
+            foreach (var item in m_Wrapper.m_ShootingActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_ShootingActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="ShootingActions" /> instance referencing this action map.
+    /// </summary>
+    public ShootingActions @Shooting => new ShootingActions(this);
+
+    // ColdMelee
+    private readonly InputActionMap m_ColdMelee;
+    private List<IColdMeleeActions> m_ColdMeleeActionsCallbackInterfaces = new List<IColdMeleeActions>();
+    private readonly InputAction m_ColdMelee_Attack;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "ColdMelee".
+    /// </summary>
+    public struct ColdMeleeActions
+    {
+        private @PlayerInputActions m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public ColdMeleeActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "ColdMelee/Attack".
+        /// </summary>
+        public InputAction @Attack => m_Wrapper.m_ColdMelee_Attack;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_ColdMelee; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="ColdMeleeActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(ColdMeleeActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="ColdMeleeActions" />
+        public void AddCallbacks(IColdMeleeActions instance)
+        {
+            if (instance == null || m_Wrapper.m_ColdMeleeActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_ColdMeleeActionsCallbackInterfaces.Add(instance);
+            @Attack.started += instance.OnAttack;
+            @Attack.performed += instance.OnAttack;
+            @Attack.canceled += instance.OnAttack;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="ColdMeleeActions" />
+        private void UnregisterCallbacks(IColdMeleeActions instance)
+        {
+            @Attack.started -= instance.OnAttack;
+            @Attack.performed -= instance.OnAttack;
+            @Attack.canceled -= instance.OnAttack;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="ColdMeleeActions.UnregisterCallbacks(IColdMeleeActions)" />.
+        /// </summary>
+        /// <seealso cref="ColdMeleeActions.UnregisterCallbacks(IColdMeleeActions)" />
+        public void RemoveCallbacks(IColdMeleeActions instance)
+        {
+            if (m_Wrapper.m_ColdMeleeActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="ColdMeleeActions.AddCallbacks(IColdMeleeActions)" />
+        /// <seealso cref="ColdMeleeActions.RemoveCallbacks(IColdMeleeActions)" />
+        /// <seealso cref="ColdMeleeActions.UnregisterCallbacks(IColdMeleeActions)" />
+        public void SetCallbacks(IColdMeleeActions instance)
+        {
+            foreach (var item in m_Wrapper.m_ColdMeleeActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_ColdMeleeActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="ColdMeleeActions" /> instance referencing this action map.
+    /// </summary>
+    public ColdMeleeActions @ColdMelee => new ColdMeleeActions(this);
+
+    // FistMelee
+    private readonly InputActionMap m_FistMelee;
+    private List<IFistMeleeActions> m_FistMeleeActionsCallbackInterfaces = new List<IFistMeleeActions>();
+    private readonly InputAction m_FistMelee_Attack;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "FistMelee".
+    /// </summary>
+    public struct FistMeleeActions
+    {
+        private @PlayerInputActions m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public FistMeleeActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "FistMelee/Attack".
+        /// </summary>
+        public InputAction @Attack => m_Wrapper.m_FistMelee_Attack;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_FistMelee; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="FistMeleeActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(FistMeleeActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="FistMeleeActions" />
+        public void AddCallbacks(IFistMeleeActions instance)
+        {
+            if (instance == null || m_Wrapper.m_FistMeleeActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_FistMeleeActionsCallbackInterfaces.Add(instance);
+            @Attack.started += instance.OnAttack;
+            @Attack.performed += instance.OnAttack;
+            @Attack.canceled += instance.OnAttack;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="FistMeleeActions" />
+        private void UnregisterCallbacks(IFistMeleeActions instance)
+        {
+            @Attack.started -= instance.OnAttack;
+            @Attack.performed -= instance.OnAttack;
+            @Attack.canceled -= instance.OnAttack;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="FistMeleeActions.UnregisterCallbacks(IFistMeleeActions)" />.
+        /// </summary>
+        /// <seealso cref="FistMeleeActions.UnregisterCallbacks(IFistMeleeActions)" />
+        public void RemoveCallbacks(IFistMeleeActions instance)
+        {
+            if (m_Wrapper.m_FistMeleeActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="FistMeleeActions.AddCallbacks(IFistMeleeActions)" />
+        /// <seealso cref="FistMeleeActions.RemoveCallbacks(IFistMeleeActions)" />
+        /// <seealso cref="FistMeleeActions.UnregisterCallbacks(IFistMeleeActions)" />
+        public void SetCallbacks(IFistMeleeActions instance)
+        {
+            foreach (var item in m_Wrapper.m_FistMeleeActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_FistMeleeActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="FistMeleeActions" /> instance referencing this action map.
+    /// </summary>
+    public FistMeleeActions @FistMelee => new FistMeleeActions(this);
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Move" which allows adding and removing callbacks.
     /// </summary>
@@ -528,5 +912,50 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnMove(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Shooting" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="ShootingActions.AddCallbacks(IShootingActions)" />
+    /// <seealso cref="ShootingActions.RemoveCallbacks(IShootingActions)" />
+    public interface IShootingActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "Attack" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnAttack(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "ColdMelee" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="ColdMeleeActions.AddCallbacks(IColdMeleeActions)" />
+    /// <seealso cref="ColdMeleeActions.RemoveCallbacks(IColdMeleeActions)" />
+    public interface IColdMeleeActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "Attack" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnAttack(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "FistMelee" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="FistMeleeActions.AddCallbacks(IFistMeleeActions)" />
+    /// <seealso cref="FistMeleeActions.RemoveCallbacks(IFistMeleeActions)" />
+    public interface IFistMeleeActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "Attack" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnAttack(InputAction.CallbackContext context);
     }
 }

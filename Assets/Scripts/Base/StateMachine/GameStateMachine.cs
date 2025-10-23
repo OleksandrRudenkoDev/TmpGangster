@@ -1,14 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using EventsManager;
-using StateMachine.States;
-using StateMachine.States.Base;
+using Base.EventsManager;
+using Base.StateMachine.States;
+using Base.StateMachine.States.Base;
 using UnityEngine;
 using Utils.LogSystem;
 using Zenject;
 
-namespace StateMachine
+namespace Base.StateMachine
 {
     public class GameStateMachine : IInitializable
     {

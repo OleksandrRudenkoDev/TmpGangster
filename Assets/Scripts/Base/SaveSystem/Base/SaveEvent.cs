@@ -1,6 +1,6 @@
-using EventsManager;
+using Base.EventsManager;
 
-namespace SaveSystem.Base
+namespace Base.SaveSystem.Base
 {
     public struct SaveEvent : IEvent
     {

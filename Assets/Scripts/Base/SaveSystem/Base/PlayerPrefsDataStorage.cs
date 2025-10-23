@@ -1,10 +1,10 @@
 using System;
+using Base.SaveSystem.Interfaces;
 using Newtonsoft.Json;
-using SaveSystem.Interfaces;
 using UnityEngine;
 using Utils.LogSystem;
 
-namespace SaveSystem.Base
+namespace Base.SaveSystem.Base
 {
     public class PlayerPrefsDataStorage<T> : DataStorage<T> where T : IData
     {

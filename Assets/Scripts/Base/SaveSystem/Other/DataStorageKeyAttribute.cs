@@ -1,6 +1,6 @@
 using System;
 
-namespace SaveSystem.Other
+namespace Base.SaveSystem.Other
 {
     [AttributeUsage(AttributeTargets.Class, Inherited = false)]
     public class DataStorageKeyAttribute : Attribute

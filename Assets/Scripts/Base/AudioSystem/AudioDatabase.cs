@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace AudioSystem
+namespace Base.AudioSystem
 {
     [CreateAssetMenu(fileName = "AudioDatabase", menuName = "Databases/AudioDatabase")]
     public class AudioDatabase : ScriptableObject

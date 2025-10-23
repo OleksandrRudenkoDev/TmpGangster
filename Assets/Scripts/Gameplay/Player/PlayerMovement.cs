@@ -49,7 +49,6 @@ namespace Gameplay.Player
 
             _playerInputActions.Move.Sprint.started += HandleSprint;
             _playerInputActions.Move.Sprint.canceled += HandleSprint;
-            _playerInputActions.Enable();
         }
 
         private void Update()

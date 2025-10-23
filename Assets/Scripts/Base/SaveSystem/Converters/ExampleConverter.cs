@@ -1,11 +1,11 @@
 using System;
+using Base.SaveSystem.Data;
+using Base.SaveSystem.Interfaces;
+using Base.SaveSystem.Other;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using SaveSystem.Data;
-using SaveSystem.Interfaces;
-using SaveSystem.Other;
 
-namespace SaveSystem.Converters
+namespace Base.SaveSystem.Converters
 {
     public class ExampleConverter : JsonConverter<ExampleData>, IConverter<ExampleData>
     {

@@ -1,5 +1,5 @@
 
-namespace StateMachine.States.Base
+namespace Base.StateMachine.States.Base
 {
     public interface IGameState : IState
     {

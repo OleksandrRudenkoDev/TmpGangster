@@ -1,9 +1,9 @@
 using System.Collections.Generic;
-using EventsManager;
-using StateMachine.States.Base;
+using Base.EventsManager;
+using Base.StateMachine.States.Base;
 using UnityEngine.InputSystem;
 
-namespace StateMachine.States
+namespace Base.StateMachine.States
 {
     public class ExampleState : BaseGameState
     {

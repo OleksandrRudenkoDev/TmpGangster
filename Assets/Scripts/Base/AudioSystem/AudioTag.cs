@@ -1,4 +1,4 @@
-﻿namespace AudioSystem
+﻿namespace Base.AudioSystem
 {
     public class AudioTag
     {

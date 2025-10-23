@@ -1,7 +1,7 @@
-using EventsManager;
-using StateMachine.States.Base;
+using Base.EventsManager;
+using Base.StateMachine.States.Base;
 
-namespace StateMachine
+namespace Base.StateMachine
 {
     public struct GameStateChangeEvent : IEvent
     {

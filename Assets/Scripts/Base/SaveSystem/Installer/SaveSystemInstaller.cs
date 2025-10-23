@@ -1,10 +1,10 @@
-using SaveSystem.Base;
-using SaveSystem.Converters;
-using SaveSystem.Data;
-using SaveSystem.Interfaces;
+using Base.SaveSystem.Base;
+using Base.SaveSystem.Converters;
+using Base.SaveSystem.Data;
+using Base.SaveSystem.Interfaces;
 using Zenject;
 
-namespace SaveSystem.Installer
+namespace Base.SaveSystem.Installer
 {
     public class SaveSystemInstaller : MonoInstaller
     {

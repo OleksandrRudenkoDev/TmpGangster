@@ -4,7 +4,7 @@ using System.Reflection;
 using UnityEditor;
 using UnityEngine;
 
-namespace Editor.SceneSelection
+namespace Base.Editor.SceneSelection
 {
     [InitializeOnLoad]
     public static class ToolbarExtender

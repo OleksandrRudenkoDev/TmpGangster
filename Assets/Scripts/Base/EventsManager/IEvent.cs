@@ -1,4 +1,4 @@
-namespace EventsManager
+namespace Base.EventsManager
 {
     public interface IEvent
     {}

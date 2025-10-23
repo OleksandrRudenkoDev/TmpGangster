@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using SaveSystem.Interfaces;
-using SaveSystem.Other;
+using Base.SaveSystem.Interfaces;
+using Base.SaveSystem.Other;
 
-namespace SaveSystem.Data
+namespace Base.SaveSystem.Data
 {
     [Serializable, DataStorageKey("ExapleData")]
     public class ExampleData : IData

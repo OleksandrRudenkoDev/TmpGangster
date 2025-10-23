@@ -1,7 +1,7 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace SaveSystem.Other
+namespace Base.SaveSystem.Other
 {
     public static class JsonConverterBaseExtensions
     {

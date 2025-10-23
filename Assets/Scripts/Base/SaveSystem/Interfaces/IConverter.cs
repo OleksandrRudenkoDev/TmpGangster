@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace SaveSystem.Interfaces
+namespace Base.SaveSystem.Interfaces
 {
     public interface IConverter<T>
         where T : IData

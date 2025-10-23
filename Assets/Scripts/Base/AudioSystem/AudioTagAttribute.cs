@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace AudioSystem
+namespace Base.AudioSystem
 {
     public class AudioTagAttribute : PropertyAttribute
     {

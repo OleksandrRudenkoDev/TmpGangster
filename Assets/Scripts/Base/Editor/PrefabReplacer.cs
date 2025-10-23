@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace Editor
+namespace Base.Editor
 {
     public class PrefabReplacer : EditorWindow
     {

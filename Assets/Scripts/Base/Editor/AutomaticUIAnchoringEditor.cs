@@ -1,6 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
-namespace Editor
+
+namespace Base.Editor
 {
     public class AutomaticUiAnchoringEditor : UnityEditor.Editor
     {

@@ -2,14 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using Base.EventsManager;
+using Base.SaveSystem.Interfaces;
 using Cysharp.Threading.Tasks;
-using EventsManager;
-using SaveSystem.Interfaces;
 using UnityEngine;
 using Utils.Extensions;
 using Zenject;
 
-namespace SaveSystem.Base
+namespace Base.SaveSystem.Base
 {
     public class SaveManager : IInitializable, IDisposable
     {

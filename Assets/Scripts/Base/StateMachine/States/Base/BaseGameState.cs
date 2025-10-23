@@ -1,9 +1,9 @@
 using System.Collections.Generic;
-using EventsManager;
+using Base.EventsManager;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-namespace StateMachine.States.Base
+namespace Base.StateMachine.States.Base
 {
     public abstract class BaseGameState : IGameState
     {

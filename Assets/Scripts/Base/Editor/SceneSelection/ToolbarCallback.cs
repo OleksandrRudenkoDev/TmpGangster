@@ -11,7 +11,7 @@ using Object = UnityEngine.Object;
 using UnityEngine.Experimental.UIElements;
 #endif
 
-namespace Editor.SceneSelection
+namespace Base.Editor.SceneSelection
 {
     public static class ToolbarCallback
     {

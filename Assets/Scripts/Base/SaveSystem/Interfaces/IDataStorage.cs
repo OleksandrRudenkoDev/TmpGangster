@@ -1,4 +1,4 @@
-namespace SaveSystem.Interfaces
+namespace Base.SaveSystem.Interfaces
 {
     public interface IDataStorage
     {

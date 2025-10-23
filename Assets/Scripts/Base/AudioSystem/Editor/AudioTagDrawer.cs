@@ -1,7 +1,7 @@
-﻿using Editor.Selectors;
+﻿using Base.Editor.Selectors;
 using UnityEditor;
 
-namespace AudioSystem.Editor
+namespace Base.AudioSystem.Editor
 {
     [CustomPropertyDrawer(typeof(AudioTagAttribute))]
     public class AudioTagDrawer : BasePropertyDrawer<AudioTag>

@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Editor
+namespace Base.Editor
 {
     public static class PrefabContextMenuCleaner
     {

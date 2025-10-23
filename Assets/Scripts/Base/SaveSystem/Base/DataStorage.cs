@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using Base.SaveSystem.Interfaces;
+using Base.SaveSystem.Other;
 using Newtonsoft.Json;
-using SaveSystem.Interfaces;
-using SaveSystem.Other;
 
-namespace SaveSystem.Base
+namespace Base.SaveSystem.Base
 {
     public abstract class DataStorage<T> : IDataStorage
         where T : IData
