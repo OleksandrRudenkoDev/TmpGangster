@@ -1,0 +1,62 @@
+{
+    "name": "PlayerInputActions",
+    "maps": [
+        {
+            "name": "Move",
+            "id": "dade9269-1b1e-4f03-bf2a-f164ed821957",
+            "actions": [
+                {
+                    "name": "Move",
+                    "type": "Value",
+                    "id": "b63e738b-6338-4088-8bc5-99f7342adb3c",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "c68e60b6-e400-43f4-894f-f51137750791",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Camera",
+            "id": "7f9234fa-702b-4403-a765-b749eb891d48",
+            "actions": [
+                {
+                    "name": "Move",
+                    "type": "Value",
+                    "id": "d957f37a-25de-447d-9656-33e50e45058e",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "9901dd3e-0fcb-448c-9d35-3ce33bec84f9",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
